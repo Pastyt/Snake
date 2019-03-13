@@ -31,7 +31,7 @@ int main ()
                 for (int j=0; j<fy; j++)
                         switch(field[i][j]) {
                         case 0:
-                                printw("0 ");// Пустота
+                                printw("  ");// Пустота
                                 break;
                         case 1:
                                 printw("1 "); // Змея
@@ -124,6 +124,25 @@ int main ()
                         snake[0][0]++;
                         break;
                 }
+	clear();
+	 for (int i=0; i<fx; i++) { //Создаем поле и выводим его в поток
+                for (int j=0; j<fy; j++)
+                        switch(field[i][j]) {
+                        case 0:
+                                printw("  ");// Пустота
+                                break;
+                        case 1:
+                                printw("1 "); // Змея
+                                break;
+                        case 2:
+                                printw("2 ");// Яблоко
+                                break;
+                        case 3:
+                                printw("- ");// Стена
+                                break;
+                        }
+                printw("\n");
+        }
                 //тут чистим всё поле и рисуем новое поверх него
         }
         endwin();
