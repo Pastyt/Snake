@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> //НЕТ РЕСПАВНА ЯБЛОКА
 #include <ncurses.h>
 #include <stdlib.h>
 #define row 11
@@ -60,6 +60,7 @@ int main ()
                                 break;
 
                         case 1:
+				endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -77,6 +78,7 @@ int main ()
                                 break;
 
                         case 3:
+				endwin();
                                 return 0;
                                 break;
                         }
@@ -94,6 +96,7 @@ int main ()
                                 break;
 
                         case 1:
+				endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -111,6 +114,7 @@ int main ()
                                 break;
 
                         case 3:
+				endwin();
                                 return 0;
                                 break;
                         }
@@ -128,6 +132,7 @@ int main ()
                                 break;
 
                         case 1:
+				endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -145,6 +150,7 @@ int main ()
                                 break;
 
                         case 3:
+				endwin();
                                 return 0;
                                 break;
                         }
@@ -162,6 +168,7 @@ int main ()
                                 break;
 
                         case 1:
+				endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -172,19 +179,24 @@ int main ()
                                         snake[0][size-i]=snake[0][size-i-1];
                                         snake[1][size-i]=snake[1][size-i-1];
                                 }
-                                snake[0][0]++;
+                                snake[1][0]++;
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
                                 break;
 
                         case 3:
+				endwin();
                                 return 0;
                                 break;
                         }
                         break;
                 }
 	clear();
+	     for (int i = 0; i < row*col; i++) {
+                if (snake[0][i]!=-1) field[snake[0][i]][snake[1][i]]=1;
+		
+} field[0][0]=3;
 	 for (int i=0; i<row; i++) { //Создаем поле и выводим его в поток
                 for (int j=0; j<col; j++)
                         switch(field[i][j]) {
@@ -195,7 +207,7 @@ int main ()
                                 printw("1 "); // Змея
                                 break;
                         case 2:
-                                printw("2 ");// Яблоко
+                                printw("2 ");// Яблоко		
                                 break;
                         case 3:
                                 printw("- ");// Стена
