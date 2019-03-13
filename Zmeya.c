@@ -8,6 +8,19 @@ enum control {W=119,A=97,S=115,D=100};
 #define A 97
 #define S 115
 #define D 100
+int respawn (int* ap,int snake[2][row*col], int size)
+{
+  bool ok=0;
+  do{
+    ok=0;
+    ap[0]=(rand()%(row-2))+1;
+    ap[1]=(rand()%(col-2))+1;
+      for (int j = 0; j < size; j++) {
+        if ((ap[0]==snake[0][j])&&(ap[1]==snake[1][j]))
+          ok=1;
+      }
+  }while (ok==1);
+}
 int main ()
 {
         initscr();
@@ -51,6 +64,7 @@ int main ()
                         switch (field[snake[0][0]-1][snake[1][0]])
                         {
                         case 0:
+                                field[ snake[0][size] ][ snake[1][size] ]=0;
                                 for (int i=0; i<size; i++)//size 1
                                 {
                                         snake[0][size-i]=snake[0][size-i-1];
@@ -75,6 +89,8 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
+                                respawn(&apple[0],snake,size);
+                                field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
                         case 3:
@@ -87,6 +103,7 @@ int main ()
                         switch (field[snake[0][0]+1][snake[1][0]])
                         {
                         case 0:
+                                field[ snake[0][size] ][ snake[1][size] ]=0;
                                 for (int i=0; i<size; i++)
                                 {
                                         snake[0][size-i]=snake[0][size-i-1];
@@ -111,6 +128,8 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
+                                respawn(&apple[0],snake,size);
+                                field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
                         case 3:
@@ -123,6 +142,7 @@ int main ()
                         switch (field[snake[0][0]][snake[1][0]-1])
                         {
                         case 0:
+                                field[ snake[0][size] ][ snake[1][size] ]=0;
                                 for (int i=0; i<size; i++)
                                 {
                                         snake[0][size-i]=snake[0][size-i-1];
@@ -147,6 +167,8 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
+                                respawn(&apple[0],snake,size);
+                                field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
                         case 3:
@@ -159,6 +181,7 @@ int main ()
                         switch (field[snake[0][0]][snake[1][0]+1])
                         {
                         case 0:
+                                field[ snake[0][size] ][ snake[1][size] ]=0;
                                 for (int i=0; i<size; i++)
                                 {
                                         snake[0][size-i]=snake[0][size-i-1];
@@ -183,6 +206,8 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
+                                respawn(&apple[0],snake,size);
+                                field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
                         case 3:
@@ -195,7 +220,7 @@ int main ()
 	clear();
 	     for (int i = 0; i < row*col; i++) {
                 if (snake[0][i]!=-1) field[snake[0][i]][snake[1][i]]=1;
-		
+
 } field[0][0]=3;
 	 for (int i=0; i<row; i++) { //Создаем поле и выводим его в поток
                 for (int j=0; j<col; j++)
@@ -207,7 +232,7 @@ int main ()
                                 printw("1 "); // Змея
                                 break;
                         case 2:
-                                printw("2 ");// Яблоко		
+                                printw("2 ");// Яблоко
                                 break;
                         case 3:
                                 printw("- ");// Стена
