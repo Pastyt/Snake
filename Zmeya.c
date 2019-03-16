@@ -58,9 +58,10 @@ int main ()
                 printw("\n");
         }
         int key,oldkey=W;
+        int speed=800;
         while(true) {
                 refresh();
-                timeout(500);
+                timeout(speed-(size*25));
                 key=getch();
                 if (key==ERR) key=oldkey;
                 else oldkey=key;
