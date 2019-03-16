@@ -1,4 +1,4 @@
-#include <stdio.h> //НЕТ РЕСПАВНА ЯБЛОКА
+#include <stdio.h>
 #include <ncurses.h>
 #include <stdlib.h>
 #define row 11
@@ -10,16 +10,16 @@ enum control {W=119,A=97,S=115,D=100};
 #define D 100
 int respawn (int* ap,int snake[2][row*col], int size)
 {
-  bool ok=0;
-  do{
-    ok=0;
-    ap[0]=(rand()%(row-2))+1;
-    ap[1]=(rand()%(col-2))+1;
-      for (int j = 0; j < size; j++) {
-        if ((ap[0]==snake[0][j])&&(ap[1]==snake[1][j]))
-          ok=1;
-      }
-  }while (ok==1);
+        bool ok=0;
+        do {
+                ok=0;
+                ap[0]=(rand()%(row-2))+1;
+                ap[1]=(rand()%(col-2))+1;
+                for (int j = 0; j < size; j++) {
+                        if ((ap[0]==snake[0][j])&&(ap[1]==snake[1][j]))
+                                ok=1;
+                }
+        } while (ok==1);
 }
 int main ()
 {
@@ -57,6 +57,7 @@ int main ()
                         }
                 printw("\n");
         }
+
         while(true) {
                 refresh();
                 switch(getch()) { //представляю без этого свича, а нажатие клавиши просто будет управлять минусом или плюсом
@@ -74,7 +75,7 @@ int main ()
                                 break;
 
                         case 1:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -94,7 +95,7 @@ int main ()
                                 break;
 
                         case 3:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         }
@@ -113,7 +114,7 @@ int main ()
                                 break;
 
                         case 1:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -133,7 +134,7 @@ int main ()
                                 break;
 
                         case 3:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         }
@@ -152,7 +153,7 @@ int main ()
                                 break;
 
                         case 1:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -172,7 +173,7 @@ int main ()
                                 break;
 
                         case 3:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         }
@@ -191,7 +192,7 @@ int main ()
                                 break;
 
                         case 1:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         case 2:
@@ -211,36 +212,34 @@ int main ()
                                 break;
 
                         case 3:
-				endwin();
+                                endwin();
                                 return 0;
                                 break;
                         }
                         break;
                 }
-	clear();
-	     for (int i = 0; i < row*col; i++) {
-                if (snake[0][i]!=-1) field[snake[0][i]][snake[1][i]]=1;
-
-} field[0][0]=3;
-	 for (int i=0; i<row; i++) { //Создаем поле и выводим его в поток
-                for (int j=0; j<col; j++)
-                        switch(field[i][j]) {
-                        case 0:
-                                printw("  ");// Пустота
-                                break;
-                        case 1:
-                                printw("1 "); // Змея
-                                break;
-                        case 2:
-                                printw("2 ");// Яблоко
-                                break;
-                        case 3:
-                                printw("- ");// Стена
-                                break;
-                        }
-                printw("\n");
-        }
-                //тут чистим всё поле и рисуем новое поверх него
+                clear();
+                for (int i = 0; i < row*col; i++) {
+                        if (snake[0][i]!=-1) field[snake[0][i]][snake[1][i]]=1;
+                } field[0][0]=3;
+                for (int i=0; i<row; i++) { //Создаем поле и выводим его в поток
+                        for (int j=0; j<col; j++)
+                                switch(field[i][j]) {
+                                case 0:
+                                        printw("  ");// Пустота
+                                        break;
+                                case 1:
+                                        printw("1 "); // Змея
+                                        break;
+                                case 2:
+                                        printw("2 ");// Яблоко
+                                        break;
+                                case 3:
+                                        printw("- ");// Стена
+                                        break;
+                                }
+                        printw("\n");
+                }
         }
         endwin();
         return 0;
