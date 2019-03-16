@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #define row 11
 #define col 11
-enum control {W=119,A=97,S=115,D=100};
 #define W 119
 #define A 97
 #define S 115
