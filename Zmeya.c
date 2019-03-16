@@ -7,6 +7,15 @@
 #define A 97
 #define S 115
 #define D 100
+int getmykey (int oldkey,int speed,int size)
+{
+        int key;
+        timeout(speed-(size*25));
+        key=getch();
+        if (key==ERR) key=oldkey;
+        else oldkey=key;
+        return key;
+}
 int respawn (int* ap,int snake[2][row*col], int size)
 {
         bool ok=0;
@@ -60,10 +69,7 @@ int main ()
         int speed=800;
         while(true) {
                 refresh();
-                timeout(speed-(size*25));
-                key=getch();
-                if (key==ERR) key=oldkey;
-                else oldkey=key;
+                key=getmykey(oldkey,speed,size);
                 switch(key) { //представляю без этого свича, а нажатие клавиши просто будет управлять минусом или плюсом
                 case W:
                         switch (field[snake[0][0]-1][snake[1][0]])
@@ -94,7 +100,7 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
-                                respawn(&apple[0],snake,size);
+                                respawn(apple,snake,size);
                                 field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
@@ -133,7 +139,7 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
-                                respawn(&apple[0],snake,size);
+                                respawn(apple,snake,size);
                                 field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
@@ -172,7 +178,7 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
-                                respawn(&apple[0],snake,size);
+                                respawn(apple,snake,size);
                                 field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
@@ -211,7 +217,7 @@ int main ()
                                 size++;
                                 snake[0][size]=lastcoord[0];
                                 snake[1][size]=lastcoord[1];
-                                respawn(&apple[0],snake,size);
+                                respawn(apple,snake,size);
                                 field[ apple[0] ][ apple[1] ]=2;
                                 break;
 
