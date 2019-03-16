@@ -57,10 +57,14 @@ int main ()
                         }
                 printw("\n");
         }
-
+        int key,oldkey=W;
         while(true) {
                 refresh();
-                switch(getch()) { //представляю без этого свича, а нажатие клавиши просто будет управлять минусом или плюсом
+                timeout(500);
+                key=getch();
+                if (key==ERR) key=oldkey;
+                else oldkey=key;
+                switch(key) { //представляю без этого свича, а нажатие клавиши просто будет управлять минусом или плюсом
                 case W:
                         switch (field[snake[0][0]-1][snake[1][0]])
                         {
