@@ -8,7 +8,7 @@
 #define S 115
 #define D 100
 #define speed 1000
-int getmykey (int *oldkey,int size)
+int getmykey (int *oldkey,int speed,int size)
 {
         int key;
         timeout(speed-(size*25));
@@ -69,9 +69,10 @@ int main ()
                 printw("\n");
         }
         int key,oldkey=W;
+        int speed=800;
         while(true) {
                 refresh();
-                key=getmykey(&oldkey,size);
+                key=getmykey(&oldkey,speed,size);
                 switch(key) { //представляю без этого свича, а нажатие клавиши просто будет управлять минусом или плюсом
                 case W:
                         switch (field[snake[0][0]-1][snake[1][0]])
