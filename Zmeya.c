@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <ncursesw/ncurses.h>
 #include <stdlib.h>
-#define row 11
-#define col 11
+#define row 15
+#define col 15
 #define W 119
 #define A 97
 #define S 115
 #define D 100
-/*int getmykey (int* oldkey,int speed,int size)
-   {
+/*int getmykey (int *oldkey,int size)
+{
         int key;
         timeout(speed-(size*25));
         key=getch();
@@ -153,7 +153,7 @@ int main ()
                 if (gameover) break;
 
                 clear();
-                
+
                 drawsnake(&snake[0][0],&field[0][0]);
 
                 hudoznik(&field[0][0]);
